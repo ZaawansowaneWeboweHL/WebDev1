@@ -1,0 +1,29 @@
+Git ważne rzeczy:
+
+git push
+git pull
+
+git init
+git add .
+git commit -m "abcdefg"
+git remote add origin "https://ZaawansowaneWeboweHLi@github.com/ZaawansowaneWeboweHL/WebDev1.git"
+git push --set-upstream origin master  
+logowanie
+
+git clone "https://ZaawansowaneWeboweHLi@github.com/ZaawansowaneWeboweHL/WebDev1.git"
+
+git switch -c "lb1-mb3"
+git add .
+git commit -m "test was changed"
+git add .
+git commit -m "created test 2"
+git push --set-upstream origin lb1-mb3
+
+github -> pull requests -> new pull requests 
+base: master    compare: lb1-mb3
+create pull request
+merge pull request
+confirm merge
+
+git switch master
+git pull
