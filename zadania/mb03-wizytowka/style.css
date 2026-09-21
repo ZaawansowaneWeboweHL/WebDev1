@@ -131,3 +131,14 @@ button:hover {
     color: #1b7f3b;
     font-weight: bold;
 }
+
+header h1{
+    display: flex;
+}
+.licznik{
+    margin-left:auto;
+    display: flex;
+}
+#ilosc-klikniec, #click-btn{
+    margin: auto 5px auto 5px
+}
