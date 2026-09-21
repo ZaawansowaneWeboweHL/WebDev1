@@ -63,3 +63,71 @@ nav a:hover{
 footer{
     padding: 20px 0px 40px 0px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 420px;
+}
+
+.pole {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    font-family: inherit;  
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #222222;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0b5ed7;
+}
+
+button {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 8px 18px;
+    border: 1px solid #0b5ed7;
+    border-radius: 4px;
+    background-color: #0b5ed7;
+    color: #ffffff;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+button:hover {
+    background-color: #0a4fb4;
+}
+
+#komunikat {
+    margin-top: 14px;
+    padding: 0;
+}
+
+#komunikat.blad {
+    color: #b02a2a;
+    font-weight: bold;
+}
+
+#komunikat.sukces {
+    color: #1b7f3b;
+    font-weight: bold;
+}
