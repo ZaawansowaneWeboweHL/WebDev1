@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: Arial;
+    max-width: 800px;
+    margin: 0 auto;
+
+    font-size: 16px;
+    line-height: 1.6;
+    color: #222222;
+    background-color: #ffffff;
+}
+header{
+    border-bottom: 5px solid #777777;
+    margin-bottom: 20px;
+}
+section{
+    padding: 15px 0;
+    border-bottom: 1px solid #777777;
+}
+h2{
+    margin-top: 0;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+nav a{
+    color: #0b5ed7;
+    text-decoration: none;
+    font-size: 130%;
+    border-bottom: 2px solid transparent;
+}
+nav a:hover{
+    border-bottom-color: #0b5ed7;
+}
+
+#lista-umiejetnosci{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+#lista-umiejetnosci li{
+    background-color: #eeeeee;
+    border: 1px #777777 solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+#lista-umiejetnosci li:hover{
+    background-color: #e1e1e1;
+    transition: 100ms ease-in-out;
+}
+footer{
+    padding: 20px 0px 40px 0px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 420px;
+}
+
+.pole {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    font-family: inherit;  
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #222222;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0b5ed7;
+}
+
+button {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 8px 18px;
+    border: 1px solid #0b5ed7;
+    border-radius: 4px;
+    background-color: #0b5ed7;
+    color: #ffffff;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+button:hover {
+    background-color: #0a4fb4;
+}
+
+#komunikat {
+    margin-top: 14px;
+    padding: 0;
+}
+
+#komunikat.blad {
+    color: #b02a2a;
+    font-weight: bold;
+}
+
+#komunikat.sukces {
+    color: #1b7f3b;
+    font-weight: bold;
+}
+
+header h1{
+    display: flex;
+}
+.licznik{
+    margin-left:auto;
+    display: flex;
+}
+#ilosc-klikniec, #klikacz{
+    margin: auto 5px auto 5px
+}
