@@ -44,3 +44,17 @@ formularz.addEventListener("submit", (event) => {
 
     formularz.reset()
 })
+
+let ilosc_klikniec = 0;
+const ilosc_klikniec_blok = document.querySelector("#ilosc-klikniec");
+const klikacz = document.querySelector("#klikacz");
+
+klikacz.addEventListener("click", (event) => {
+    if (ilosc_klikniec == 9999){
+        ilosc_klikniec = 0;
+    }
+    ilosc_klikniec++;
+    ilosc_klikniec_blok.textContent = String(ilosc_klikniec).padStart(4, "0");
+})
+
+

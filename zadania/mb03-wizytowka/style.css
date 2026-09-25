@@ -139,6 +139,6 @@ header h1{
     margin-left:auto;
     display: flex;
 }
-#ilosc-klikniec, #click-btn{
+#ilosc-klikniec, #klikacz{
     margin: auto 5px auto 5px
 }
