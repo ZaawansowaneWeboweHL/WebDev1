@@ -9,11 +9,15 @@ const lista_umiejetnosci = [
 
 const lista = document.querySelector("#lista-umiejetnosci");
 
-for (const umiejetnosc of lista_umiejetnosci) {
-    let element = document.createElement("li");
-    element.textContent = umiejetnosc;
-    lista.appendChild(element);
-}
+const buduj_liste = (lista) => 
+    lista.map(({nazwa, poziom}) => 
+        `<li>
+            <span class="nazwa">${nazwa}</span>
+            <span class="poziom" title="Poziom ${poziom}" z 5>${"●".repeat(poziom)}${"○".repeat(5-poziom)}</span>
+        </li>`
+    ).join("");
+
+lista.innerHTML = buduj_liste(lista_umiejetnosci);
 
 const formularz = document.querySelector("#formularz-kontakt");
 const komunikat = document.querySelector("#komunikat");
