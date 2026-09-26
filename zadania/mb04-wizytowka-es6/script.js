@@ -8,6 +8,13 @@ lista.innerHTML = buduj_liste(lista_umiejetnosci);
 const formularz = document.querySelector("#formularz-kontakt");
 const komunikat = document.querySelector("#komunikat");
 
+/**
+ * Ustawia treść i typ komunikatu wyświetlanego na stronie.
+ *
+ * @param {string} tresc - Treść komunikatu do pokazania.
+ * @param {"blad"|"sukces"} rodzaj - Typ komunikatu wpływający na jego styl.
+ * @returns {void}
+ */
 const pokaz_komunikat = (tresc, rodzaj) => {
     komunikat.textContent = tresc;
     komunikat.classList.remove("blad", "sukces");
@@ -60,6 +67,12 @@ klikacz.addEventListener("click", (event) => {
 const podsumowanieEl = document.querySelector("#podsumowanie");
 const filtryEl = document.querySelector("#filtry");
 
+/**
+ * Wyświetla umiejętności z wybranej kategorii i odświeża podsumowanie.
+ *
+ * @param {string} kategoria - Nazwa kategorii do wyświetlenia.
+ * @returns {void}
+ */
 const pokaz_umiejetnosci = (kategoria = "wszystkie") => {
     const wybrane = przefiltruj(lista_umiejetnosci, kategoria);
 
@@ -83,6 +96,13 @@ filtryEl.addEventListener("click", (event) => {
 
 const inspiracjeEl = document.querySelector("#inspiracje");
 
+/**
+ * Pobiera listę użytkowników z publicznego API.
+ *
+ * @param {string} adres - pełny adres zasobu
+ * @returns {Promise<Array<object>>} tablica użytkowników.
+ * @throws {Error} Gdy serwer odpowie statusem innym niż 2xx
+ */
 const pobierzUzytkownikow = async (adres) => {
     const odpowiedz = await fetch(adres);
 
@@ -93,6 +113,11 @@ const pobierzUzytkownikow = async (adres) => {
     return odpowiedz.json();
 };
 
+/**
+ * Pobiera i wyświetla profile użytkowników na stronie.
+ *
+ * @returns {Promise<void>}
+ */
 const pokazInspiracje = async () => {
     inspiracjeEl.innerHTML = `<p class="ladowanie">Ładowanie...</p>`;
     try {
