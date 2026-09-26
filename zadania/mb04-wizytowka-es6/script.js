@@ -26,7 +26,7 @@ const pokaz_komunikat = (tresc, rodzaj) => {
     komunikat.textContent = tresc;
     komunikat.classList.remove("blad", "sukces");
     komunikat.classList.add(rodzaj);
-}
+};
 
 formularz.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -55,7 +55,7 @@ formularz.addEventListener("submit", (event) => {
     pokaz_komunikat(`Imię: ${imie}\nTemat: ${temat}`, "sukces");
 
     formularz.reset()
-})
+});
 
 let ilosc_klikniec = 0;
 const ilosc_klikniec_blok = document.querySelector("#ilosc-klikniec");
@@ -67,6 +67,45 @@ klikacz.addEventListener("click", (event) => {
     }
     ilosc_klikniec++;
     ilosc_klikniec_blok.textContent = String(ilosc_klikniec).padStart(4, "0");
-})
+});
 
+const sredni_poziom = (lista) => {
+    if (lista.length === 0) {
+        return 0;
+    }
 
+    let suma = lista.reduce((razem, {poziom}) => razem + poziom, 0);
+    return Math.round((suma/lista.length)*10) / 10;
+};
+
+const przefiltruj = (lista, kategoria) => {
+    if (kategoria === "wszystkie") return lista;
+    return lista.filter(umiejetnosc => umiejetnosc.kategoria === kategoria);
+};
+
+const podsumowanie = (lista) => {
+    if (lista.length === 0) return "Brak umiejętności w tej kategorii."
+    return `Umiejętności: ${lista.length} · średni poziom: ${sredni_poziom(lista)}`;
+};
+
+// Obsługa kliknięć
+const podsumowanieEl = document.querySelector("#podsumowanie");
+const filtryEl = document.querySelector("#filtry");
+
+const pokaz_umiejetnosci = (kategoria = "wszystkie") => {
+    const wybrane = przefiltruj(lista_umiejetnosci, kategoria);
+
+    lista.innerHTML = buduj_liste(wybrane);
+    podsumowanieEl.textContent = podsumowanie(wybrane);
+}
+
+filtryEl.addEventListener("click", (event) => {
+    const przycisk = event.target.closest("button");
+
+    if (!przycisk) return;
+
+    filtryEl.querySelectorAll("button").forEach(b => b.classList.remove("aktywny"));
+    przycisk.classList.add("aktywny");
+
+    pokaz_umiejetnosci(przycisk.dataset.kategoria);
+});
