@@ -13,7 +13,7 @@ const buduj_liste = (lista) =>
     lista.map(({nazwa, poziom}) => 
         `<li>
             <span class="nazwa">${nazwa}</span>
-            <span class="poziom" title="Poziom ${poziom}" z 5>${"●".repeat(poziom)}${"○".repeat(5-poziom)}</span>
+            <span class="poziom" title="Poziom ${poziom} z 5">${"●".repeat(poziom)}${"○".repeat(5-poziom)}</span>
         </li>`
     ).join("");
 
