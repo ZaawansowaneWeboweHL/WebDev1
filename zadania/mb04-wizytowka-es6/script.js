@@ -1,21 +1,7 @@
-const lista_umiejetnosci = [
-    { nazwa: "C#", poziom: 4, kategoria: "backend" },
-    { nazwa: "Javascript", poziom: 3, kategoria: "frontend" },
-    { nazwa: "HTML", poziom: 4, kategoria: "frontend" },
-    { nazwa: "CSS", poziom: 3, kategoria: "frontend" },
-    { nazwa: "Git", poziom: 2, kategoria: "narzedzia" },
-    { nazwa: "Praca w zespole", poziom: 3, kategoria: "miekkie" }
-];
+import { lista_umiejetnosci, ADRES_API } from "./dane.js";
+import { buduj_liste, przefiltruj, podsumowanie } from "./umiejetnosci.js";
 
 const lista = document.querySelector("#lista-umiejetnosci");
-
-const buduj_liste = (lista) => 
-    lista.map(({nazwa, poziom}) => 
-        `<li>
-            <span class="nazwa">${nazwa}</span>
-            <span class="poziom" title="Poziom ${poziom} z 5">${"●".repeat(poziom)}${"○".repeat(5-poziom)}</span>
-        </li>`
-    ).join("");
 
 lista.innerHTML = buduj_liste(lista_umiejetnosci);
 
@@ -69,26 +55,8 @@ klikacz.addEventListener("click", (event) => {
     ilosc_klikniec_blok.textContent = String(ilosc_klikniec).padStart(4, "0");
 });
 
-const sredni_poziom = (lista) => {
-    if (lista.length === 0) {
-        return 0;
-    }
 
-    let suma = lista.reduce((razem, {poziom}) => razem + poziom, 0);
-    return Math.round((suma/lista.length)*10) / 10;
-};
-
-const przefiltruj = (lista, kategoria) => {
-    if (kategoria === "wszystkie") return lista;
-    return lista.filter(umiejetnosc => umiejetnosc.kategoria === kategoria);
-};
-
-const podsumowanie = (lista) => {
-    if (lista.length === 0) return "Brak umiejętności w tej kategorii."
-    return `Umiejętności: ${lista.length} · średni poziom: ${sredni_poziom(lista)}`;
-};
-
-// Obsługa kliknięć
+// Obsługa kliknięć listy
 const podsumowanieEl = document.querySelector("#podsumowanie");
 const filtryEl = document.querySelector("#filtry");
 
@@ -98,6 +66,8 @@ const pokaz_umiejetnosci = (kategoria = "wszystkie") => {
     lista.innerHTML = buduj_liste(wybrane);
     podsumowanieEl.textContent = podsumowanie(wybrane);
 }
+
+pokaz_umiejetnosci();
 
 filtryEl.addEventListener("click", (event) => {
     const przycisk = event.target.closest("button");
