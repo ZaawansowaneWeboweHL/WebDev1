@@ -1,0 +1,7 @@
+#lista{
+    display: flex;
+    gap: 25px;
+}
+.wyrozniony{
+    background-color: palevioletred;
+}
