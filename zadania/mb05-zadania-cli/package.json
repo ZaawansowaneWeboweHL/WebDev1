@@ -1,0 +1,15 @@
+{
+  "name": "mb05-zadania-cli",
+  "version": "1.0.0",
+  "description": "Lista zadań obsługiwana z terminala",
+  "main": "app.js",
+  "scripts": {
+    "lista": "node app.js lista",
+    "dodaj": "node app.js dodaj",
+    "zrobione": "node app.js zrobione"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
