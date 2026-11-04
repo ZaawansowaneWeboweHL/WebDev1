@@ -1,8 +1,8 @@
 {
   "name": "mb05-zadania-cli",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Lista zadań obsługiwana z terminala",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
