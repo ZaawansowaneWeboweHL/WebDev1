@@ -9,4 +9,4 @@ export const gry = [
     { id: 8, nazwa: "Terraformacja Marsa", wydawca: "Stronghold Games", cena: 179, gracze: 5 },
     { id: 9, nazwa: "Azul", wydawca: "Next Move Games", cena: 199, gracze: 2 },
     { id: 10, nazwa: "Codenames", wydawca: "Czech Games Edition", cena: 189, gracze: 8 }
-]
+];
