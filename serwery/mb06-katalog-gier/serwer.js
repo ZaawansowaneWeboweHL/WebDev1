@@ -49,6 +49,18 @@ app.get('/szukaj', (req, res) => {
     res.json(wynik);
 });
 
+app.get('/statystyki', (req, res) => {
+    const sumaCen = gry.reduce((suma, g) => suma + g.cena, 0);
+    const srednia = sumaCen / gry.length;
+    const najdrozsza = gry.reduce((a, b) => (b.cena > a.cena ? b : a));
+
+    res.json({
+        liczbaGier: gry.length,
+        sredniaCena: Math.round(srednia*100)/100,
+        najdrozsza: najdrozsza.nazwa
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Serwer działa: http://localhost:${PORT}`);
 });
