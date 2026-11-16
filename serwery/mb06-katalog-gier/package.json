@@ -4,7 +4,8 @@
   "description": "Serwer katalogu gier planszowych",
   "main": "serwer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node serwer.js",
+    "dev": "nodemon serwer.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +13,8 @@
   "type": "module",
   "dependencies": {
     "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
