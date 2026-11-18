@@ -62,6 +62,18 @@ app.post('/echo', (req, res) => {
     res.json({odebrano: req.body});
 });
 
+/** Nieznany adres: JSON dla tras z danymi, strona HTML dla reszty. */
+app.use((req, res) => {
+    const czyDane = ["/gry", "/szukaj", "/statystyki"].some((p) => req.url.startsWith(p));
+
+    if (czyDane){
+        res.status(404).json({blad: "Nie ma takiej trasy."});
+        return;
+    }
+
+    res.status(404).send("<h1>404 - Nie ma takiej strony</h1>");
+})
+
 app.listen(PORT, () => {
     console.log(`Serwer działa: http://localhost:${PORT}`);
 });
