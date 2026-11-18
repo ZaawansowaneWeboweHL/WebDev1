@@ -1,0 +1,20 @@
+{
+  "name": "mb07-katalog-gier",
+  "version": "1.0.0",
+  "description": "Ulepszony serwer katalogu gier planszowych",
+  "main": "serwer.js",
+  "scripts": {
+    "start": "node serwer.js",
+    "dev": "nodemon serwer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
