@@ -7,21 +7,29 @@ const app = express();
 const PORT = 3000;
 
 /**
- * Loguje każde żądanie w terminalu : godzina, metoda i adres.
- * Dodaje do żądania pole `req.czasZadania` (godzina w formacie HH:MM:SS),
- * z którego korzysta trasa /statystyki.
+ * Loguje każde żądanie w terminalu, dodając do niego czas wykonania.
+ * @param {import('express').Request} req żądanie HTTP
+ * @param {import('express').Response} res odpowiedź HTTP
+ * @param {import('express').NextFunction} next funkcja uruchamiająca kolejne middleware
+ * @returns {void} przekazuje żądanie dalej
  */
 const logger = (req, res, next) => {
     req.czasZadania = new Date().toLocaleTimeString('pl-PL');
     console.log(`[${req.czasZadania}] ${req.method} ${req.url}`);
     next();
-}
+};
 app.use(logger);
+
+/** Rejestruje trasy katalogu gier pod wspólnym prefiksem `/gry`. */
 app.use('/gry', routerGier);
 
+/** Umożliwia odczyt danych JSON przesyłanych w treści żądania. */
 app.use(express.json());
+
+/** Umożliwia odczyt danych formularzy przesyłanych w treści żądania. */
 app.use(express.urlencoded({ extended: true }));
 
+/** Udostępnia pliki statyczne z katalogu `public`, w tym stronę główną. */
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
 /** GET /szukaj?wydawca=&max=&gracze= - filtrowanie katalogu; brak parametrów = cała lista. */
@@ -62,7 +70,7 @@ app.post('/echo', (req, res) => {
     res.json({odebrano: req.body});
 });
 
-/** GET /blad - celowo zgłasza bład; służy do sprawdzania obsługiwania błędów. */
+/** GET /blad - celowo zgłasza błąd, aby można było sprawdzić obsługę błędów 500. */
 app.get("/blad", () => {
     throw new Error("Testowy błąd");
 });
@@ -79,6 +87,7 @@ app.use((req, res) => {
     res.status(404).send("<h1>404 - Nie ma takiej strony</h1>");
 });
 
+/** Zwraca JSON ze statusem 500 po błędzie zgłoszonym przez trasę. */
 app.use((err, req, res, next) => {
     console.error("Błąd:", err.message);
     res.status(500).json({blad: "Błąd serwera"});

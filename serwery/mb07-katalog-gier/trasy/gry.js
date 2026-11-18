@@ -3,12 +3,12 @@ import { gry } from '../dane.js';
 
 const router = Router();
 
-/** GET /gry - pełna lista gier w katalogu. */
+/** GET /gry - zwraca pełną listę gier w katalogu w formacie JSON. */
 router.get('/', (req, res) => {
     res.json(gry);
 });
 
-/** GET /gry/:id - jedna gra o podanym numerze; brak gry = 404. */
+/** GET /gry/:id - zwraca jedną grę o podanym numerze albo JSON 404. */
 router.get('/:id', (req, res) => {
     const szukane = Number(req.params.id);
     const gra = gry.find((g) => g.id === szukane);

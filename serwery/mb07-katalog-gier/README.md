@@ -19,7 +19,7 @@ statystyki katalogu.
 2. Przejdź do katalogu projektu:
 
    ```bash
-   cd serwery/mb06-katalog-gier
+   cd serwery/mb07-katalog-gier
    ```
 
 3. Zainstaluj zależności:
@@ -36,15 +36,20 @@ statystyki katalogu.
 
    Serwer będzie dostępny pod adresem `http://localhost:3000`.
 
+Do jednorazowego uruchomienia bez automatycznego restartu można użyć
+`npm start`.
+
 ## Struktura projektu
 
-| Plik | Zawartość |
+| Plik lub katalog | Zawartość |
 |---|---|
-| `serwer.js` | konfiguracja Expressa i obsługa tras HTTP |
-| `dane.js` | lista gier planszowych |
+| `serwer.js` | konfiguracja Expressa, middleware i trasy HTTP |
+| `trasy/gry.js` | router obsługujący `/gry` i `/gry/:id` |
+| `dane.js` | lista gier planszowych używana przez API |
+| `public/` | statyczna strona HTML i arkusz stylów |
+| `zapytania.http` | przykładowe żądania do testowania endpointu `/echo` |
 | `package.json` | konfiguracja projektu i skrypty npm |
-| `package-lock.json` | dokładne wersje zainstalowanych zależności |
-| `.gitignore` | pliki pomijane przez system kontroli wersji |
+| `package-lock.json` | dokładne wersje zależności |
 
 ## Skrypty
 
@@ -64,6 +69,15 @@ statystyki katalogu.
 | GET | `/szukaj?wydawca=&max=&gracze=` | filtrowanie katalogu według wydawcy, ceny i liczby graczy | JSON |
 | GET | `/statystyki` | liczba gier, średnia cena i nazwa najdroższej gry | JSON |
 
+## Middleware
+
+| Middleware | Działanie |
+|---|---|
+| `logger` | loguje godzinę, metodę i adres każdego żądania; dodaje `req.czasZadania` |
+| `express.json()` | odczytuje treść żądania w formacie JSON |
+| `express.urlencoded({ extended: true })` | odczytuje dane formularzy |
+| `express.static(...)` | wysyła pliki statyczne z katalogu `public` |
+
 ## Przykłady
 
 ### Lista wszystkich gier
@@ -80,20 +94,6 @@ Adres: `http://localhost:3000/gry`
     "gracze": 4
   }
 ]
-```
-
-### Jedna gra
-
-Adres: `http://localhost:3000/gry/2`
-
-```json
-{
-  "id": 2,
-  "nazwa": "Carcassonne",
-  "wydawca": "Rebel",
-  "cena": 99,
-  "gracze": 5
-}
 ```
 
 ### Wyszukiwanie
