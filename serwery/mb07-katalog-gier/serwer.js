@@ -17,6 +17,9 @@ const logger = (req, res, next) => {
 }
 app.use(logger);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
 /** GET /gry - pełna lista gier w katalogu. */
@@ -64,8 +67,15 @@ app.get('/statystyki', (req, res) => {
     res.json({
         liczbaGier: gry.length,
         sredniaCena: Math.round(srednia*100)/100,
-        najdrozsza: najdrozsza.nazwa
+        najdrozsza: najdrozsza.nazwa,
+        wygenerowano: req.czasZadania
     });
+});
+
+/** POST /echo - odsyła treść żądania; służy do sprawdzania, jak serwer czyta dane. */
+app.post('/echo', (req, res) => {
+    console.log(req.body);
+    res.json({odebrano: req.body});
 });
 
 app.listen(PORT, () => {
